@@ -1,0 +1,16 @@
+class Solution:
+    def maxProfit(self, p: List[int]) -> int:
+        l=[0 for i in range(len(p))]
+        mx=p[len(p)-1]
+        for i in range(len(p)-2,-1,-1):
+            if mx>=p[i]:
+                l[i]=mx
+            else:
+                mx=p[i]
+                l[i]=mx
+        print(l)
+        mx=0
+        for i in range(len(p)-1):
+            if l[i]-p[i]>mx:
+                mx=l[i]-p[i]
+        return mx

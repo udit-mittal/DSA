@@ -1,0 +1,38 @@
+class Solution:
+    def nextPermutation(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        x=-1
+        for i in range(len(nums)-2,-1,-1):
+            if nums[i]<nums[i+1]:
+                x=i
+                break
+        if x==-1:
+            for i in range(len(nums)//2):
+                nums[i],nums[len(nums)-1-i]=nums[len(nums)-1-i],nums[i]
+            return nums
+        mx=101
+        k=[nums[x]]
+        for i in range(x+1,len(nums)):
+            if nums[i]<mx and nums[i]>nums[x]:
+                mx=nums[i]
+            k.append(nums[i])
+        k.sort()
+        print(k)
+        nums[x]=mx
+        k1=[]
+        f=0
+        for i in range(len(k)):
+            if k[i]==mx and f==0:
+                f=1
+            else:
+                k1.append(k[i])
+        print(k1)
+        z=0
+        for i in range(x+1,len(nums)):
+            
+            nums[i]=k1[z]
+            z+=1
+        return nums
+        
